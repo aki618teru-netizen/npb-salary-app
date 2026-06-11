@@ -52,7 +52,8 @@ st.markdown("""
 [data-testid="stSidebar"] label[data-baseweb="radio"] { cursor: pointer !important; }
 [data-testid="stSidebar"] label[data-baseweb="radio"] { font-size: 13px !important; line-height: 1.2 !important; }
 [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div { padding: 0.2rem 0 !important; }
-.main { margin-left: 0 !important; }
+.main { margin-left: 0 !important; transition: none !important; }
+[data-testid="stSidebar"] { box-shadow: 2px 0 8px rgba(0,0,0,0.15); }
 .block-container { max-width: 1400px !important; padding-top: 2rem !important; }
 .block-container { max-width: 1400px !important; padding-top: 2rem !important; }
 .stDataFrame, .stTable { max-width: 100% !important; overflow-x: auto !important; }
