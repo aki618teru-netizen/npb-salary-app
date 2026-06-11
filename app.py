@@ -669,8 +669,7 @@ if data_loaded:
 
                 actual_data = st.session_state.salary_long[
                     (st.session_state.salary_long['選手名'] == selected) &
-                    (st.session_state.sala
-                     ry_long['年度'] == predict_year)
+                    (st.session_state.salary_long['年度'] == predict_year)
                 ]
                 actual_salary = actual_data['年俸_円'].values[0] if not actual_data.empty else None
 
