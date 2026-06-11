@@ -32,6 +32,11 @@ st.markdown("""
     z-index: 1000000;
     overflow: hidden;
     border-radius: 0px 30px 30px 0;
+    transform: translateX(-280px);
+    transition: transform 0.3s ease !important;
+}
+[data-testid="stSidebar"].sidebar-open {
+    transform: translateX(0);
 }
 [data-testid="stSidebarUserContent"] { padding-top: 3rem !important; margin-top: 0 !important; }
 [data-testid="stSidebarContent"] {
@@ -48,7 +53,8 @@ st.markdown("""
 [data-testid="stSidebar"] label[data-baseweb="radio"] { cursor: pointer !important; }
 [data-testid="stSidebar"] label[data-baseweb="radio"] { font-size: 13px !important; line-height: 1.2 !important; }
 [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div { padding: 0.2rem 0 !important; }
-.main { margin-left: 280px !important; transition: margin-left 0.3s ease !important; }
+.main { margin-left: 0 !important; }
+.block-container { max-width: 1400px !important; padding-top: 2rem !important; }
 .block-container { max-width: 1400px !important; padding-top: 2rem !important; }
 .stDataFrame, .stTable { max-width: 100% !important; overflow-x: auto !important; }
 table { table-layout: auto !important; width: 100% !important; min-width: 600px !important; }
@@ -526,11 +532,26 @@ if data_loaded:
     )
     st.sidebar.markdown("""
     <script>
-    const radios = window.parent.document.querySelectorAll('[data-testid="stSidebar"] input[type="radio"]');
-    radios.forEach(r => r.addEventListener('change', () => {
-        const btn = window.parent.document.querySelector('[data-testid="collapsedControl"]');
-        if (btn) btn.click();
-    }));
+    (function() {
+        const doc = window.parent.document;
+        function setupSidebar() {
+            const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+            const collapseBtn = doc.querySelector('[data-testid="collapsedControl"]');
+            if (!sidebar || !collapseBtn) { setTimeout(setupSidebar, 300); return; }
+
+            // 開閉ボタンでサイドバー表示切替
+            collapseBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('sidebar-open');
+            });
+
+            // メニュー選択で自動的に閉じる
+            const radios = sidebar.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => r.addEventListener('change', () => {
+                setTimeout(() => { sidebar.classList.remove('sidebar-open'); }, 200);
+            }));
+        }
+        setupSidebar();
+    })();
     </script>
     """, unsafe_allow_html=True)
 
