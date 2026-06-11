@@ -531,26 +531,21 @@ if data_loaded:
     st.sidebar.markdown("""
     <script>
     (function() {
-        const doc = window.parent.document;
+        var doc = window.parent.document;
         function setupSidebar() {
-            const sidebar = doc.querySelector('[data-testid="stSidebar"]');
-            const collapseBtn = doc.querySelector('[data-testid="collapsedControl"]');
+            var sidebar = doc.querySelector('[data-testid="stSidebar"]');
+            var collapseBtn = doc.querySelector('[data-testid="collapsedControl"]');
             if (!sidebar || !collapseBtn) { setTimeout(setupSidebar, 300); return; }
-
-            // 開閉ボタンでサイドバー表示切替
-            collapseBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('sidebar-open');
+            var radios = sidebar.querySelectorAll('input[type="radio"]');
+            radios.forEach(function(r) {
+                r.addEventListener('change', function() {
+                    if (window.parent.innerWidth < 768) {
+                        setTimeout(function() {
+                            sidebar.style.transform = 'translateX(-280px)';
+                        }, 200);
+                    }
+                });
             });
-
-            // メニュー選択で自動的に閉じる（モバイルのみ）
-            const radios = sidebar.querySelectorAll('input[type="radio"]');
-            radios.forEach(r => r.addEventListener('change', () => {
-                if (window.parent.innerWidth < 768) {
-                    setTimeout(() => {
-                        sidebar.style.transform = 'translateX(-280px)';
-                    }, 200);
-                }
-            }));
         }
         setupSidebar();
     })();
