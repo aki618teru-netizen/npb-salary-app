@@ -74,7 +74,8 @@ st.markdown("""
 
 # 日本語フォント設定
 try:
-    import japanize_matplotlib
+    import matplotlib_fontja
+    matplotlib_fontja.japanize()
 except ImportError:
     pass
 
