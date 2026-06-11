@@ -74,7 +74,6 @@ st.markdown("""
 <style>
 [data-testid="stDataFrame"] { animation: none !important; transition: none !important; }
 .stDataFrame { animation: none !important; transition: none !important; }
-* { animation-duration: 0s !important; animation-delay: 0s !important; transition-duration: 0s !important; }
 </style>
 """, unsafe_allow_html=True)
 
