@@ -524,6 +524,15 @@ if data_loaded:
          "🏆 精度ランキング", "💰 年俸別予測", "📜 予測履歴"],
         key="main_menu", label_visibility="collapsed"
     )
+    st.sidebar.markdown("""
+    <script>
+    const radios = window.parent.document.querySelectorAll('[data-testid="stSidebar"] input[type="radio"]');
+    radios.forEach(r => r.addEventListener('change', () => {
+        const btn = window.parent.document.querySelector('[data-testid="collapsedControl"]');
+        if (btn) btn.click();
+    }));
+    </script>
+    """, unsafe_allow_html=True)
 
     # ----------------------------------------------------------
     # ホーム
