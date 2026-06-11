@@ -537,14 +537,24 @@ if data_loaded:
             var sidebar = doc.querySelector('[data-testid="stSidebar"]');
             var collapseBtn = doc.querySelector('[data-testid="collapsedControl"]');
             if (!sidebar || !collapseBtn) { setTimeout(setupSidebar, 300); return; }
+            var main = doc.querySelector('.main');
+            collapseBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-open');
+                if (main) {
+                    if (sidebar.classList.contains('sidebar-open')) {
+                        main.style.marginLeft = '280px';
+                    } else {
+                        main.style.marginLeft = '0px';
+                    }
+                }
+            });
             var radios = sidebar.querySelectorAll('input[type="radio"]');
             radios.forEach(function(r) {
                 r.addEventListener('change', function() {
-                    if (window.parent.innerWidth < 768) {
-                        setTimeout(function() {
-                            sidebar.style.transform = 'translateX(-280px)';
-                        }, 200);
-                    }
+                    setTimeout(function() {
+                        sidebar.classList.remove('sidebar-open');
+                        if (main) main.style.marginLeft = '0px';
+                    }, 200);
                 });
             });
         }
