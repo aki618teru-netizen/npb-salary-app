@@ -32,7 +32,6 @@ st.markdown("""
     z-index: 1000000;
     overflow: hidden;
     border-radius: 0px 30px 30px 0;
-    transform: translateX(-280px);
     transition: transform 0.3s ease !important;
 }
 [data-testid="stSidebar"].sidebar-open {
@@ -543,10 +542,14 @@ if data_loaded:
                 sidebar.classList.toggle('sidebar-open');
             });
 
-            // メニュー選択で自動的に閉じる
+            // メニュー選択で自動的に閉じる（モバイルのみ）
             const radios = sidebar.querySelectorAll('input[type="radio"]');
             radios.forEach(r => r.addEventListener('change', () => {
-                setTimeout(() => { sidebar.classList.remove('sidebar-open'); }, 200);
+                if (window.parent.innerWidth < 768) {
+                    setTimeout(() => {
+                        sidebar.style.transform = 'translateX(-280px)';
+                    }, 200);
+                }
             }));
         }
         setupSidebar();
@@ -671,7 +674,8 @@ if data_loaded:
 
                 actual_data = st.session_state.salary_long[
                     (st.session_state.salary_long['選手名'] == selected) &
-                    (st.session_state.salary_long['年度'] == predict_year)
+                    (st.session_state.sala
+                     ry_long['年度'] == predict_year)
                 ]
                 actual_salary = actual_data['年俸_円'].values[0] if not actual_data.empty else None
 
