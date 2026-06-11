@@ -75,9 +75,8 @@ st.markdown("""
 # 日本語フォント設定
 try:
     import japanize_matplotlib
-    plt.rcParams["font.family"] = "IPAexGothic"
 except ImportError:
-    plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial Unicode MS', 'sans-serif']
+    pass
 
 # ============================================================
 # ユーティリティ関数
