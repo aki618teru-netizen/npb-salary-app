@@ -707,17 +707,15 @@ if data_loaded:
     # ホーム
     # ----------------------------------------------------------
     if menu == "🏠 ホーム":
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2 = st.columns(2)
         with col1:
             st.metric("野手採用モデル", st.session_state.b_name)
-        with col2:
             st.metric("野手R²", f"{st.session_state.b_results[st.session_state.b_name]['R2']:.4f}")
-        with col3:
+        with col2:
             if st.session_state.p_name:
                 st.metric("投手採用モデル", st.session_state.p_name)
             else:
                 st.metric("投手採用モデル", "データなし")
-        with col4:
             if st.session_state.p_results:
                 st.metric("投手R²", f"{st.session_state.p_results[st.session_state.p_name]['R2']:.4f}")
             else:
