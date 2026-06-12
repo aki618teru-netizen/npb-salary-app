@@ -694,14 +694,6 @@ if data_loaded:
     # ----------------------------------------------------------
     # サイドバー
     # ----------------------------------------------------------
-    st.sidebar.markdown("### 🎯 機能選択")
-    menu = st.sidebar.radio(
-        "メニュー",
-        ["🏠 ホーム", "🔍 選手予測", "📊 選手比較", "🔬 モデル比較",
-         "✏️ カスタム", "📈 性能", "📉 要因分析",
-         "🏆 精度ランキング", "💰 年俸別予測", "📜 予測履歴"],
-        key="main_menu_v2", label_visibility="collapsed"
-    )
     st.sidebar.markdown("""
     <div class="sidebar-logo">
         <div class="logo-icon">⚾</div>
@@ -721,30 +713,41 @@ if data_loaded:
     <script>
     (function() {
         var doc = window.parent.document;
-        function setupSidebar() {
+        function setup() {
             var sidebar = doc.querySelector('[data-testid="stSidebar"]');
             var main = doc.querySelector('section[data-testid="stMain"]');
-            var collapseBtn = doc.querySelector('[data-testid="collapsedControl"]');
-            if (!sidebar || !collapseBtn) { setTimeout(setupSidebar, 300); return; }
-            var isOpen = false;
-            collapseBtn.addEventListener('click', function() {
-                isOpen = !isOpen;
-                sidebar.style.transform = isOpen ? 'translateX(0)' : 'translateX(-260px)';
-                if (main) main.style.marginLeft = isOpen ? '260px' : '0px';
-            });
+            var btn = doc.querySelector('[data-testid="collapsedControl"]');
+            if (!sidebar || !btn || !main) { setTimeout(setup, 300); return; }
+
+            var open = false;
+
+            function openSidebar() {
+                open = true;
+                sidebar.style.transform = 'translateX(0)';
+                main.style.marginLeft = '260px';
+                main.style.width = 'calc(100% - 260px)';
+            }
+            function closeSidebar() {
+                open = false;
+                sidebar.style.transform = 'translateX(-260px)';
+                main.style.marginLeft = '0px';
+                main.style.width = '100%';
+            }
+
             sidebar.style.transform = 'translateX(-260px)';
-            var radios = sidebar.querySelectorAll('input[type="radio"]');
-            radios.forEach(function(r) {
+            main.style.transition = 'margin-left 0.3s ease, width 0.3s ease';
+
+            btn.addEventListener('click', function() {
+                open ? closeSidebar() : openSidebar();
+            });
+
+            sidebar.querySelectorAll('input[type="radio"]').forEach(function(r) {
                 r.addEventListener('change', function() {
-                    setTimeout(function() {
-                        isOpen = false;
-                        sidebar.style.transform = 'translateX(-260px)';
-                        if (main) main.style.marginLeft = '0px';
-                    }, 150);
+                    setTimeout(closeSidebar, 300);
                 });
             });
         }
-        setTimeout(setupSidebar, 500);
+        setTimeout(setup, 500);
     })();
     </script>
     """, unsafe_allow_html=True)
