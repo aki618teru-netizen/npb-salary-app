@@ -187,6 +187,8 @@ section[data-testid="stMain"] {
 @media (max-width: 768px) {
     .block-container { padding: 1rem !important; }
 }
+[data-testid="collapsedControl"] { display: none !important; }
+[data-testid="stSidebarCollapseButton"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
