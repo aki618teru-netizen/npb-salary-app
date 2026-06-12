@@ -700,7 +700,7 @@ if data_loaded:
         ["🏠 ホーム", "🔍 選手予測", "📊 選手比較", "🔬 モデル比較",
          "✏️ カスタム", "📈 性能", "📉 要因分析",
          "🏆 精度ランキング", "💰 年俸別予測", "📜 予測履歴"],
-        key="main_menu", label_visibility="collapsed"
+        key="main_menu_v2", label_visibility="collapsed"
     )
     st.sidebar.markdown("""
     <div class="sidebar-logo">
