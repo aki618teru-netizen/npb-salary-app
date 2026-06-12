@@ -185,7 +185,14 @@ section[data-testid="stMain"] {
 [data-testid="stVerticalBlock"] { gap: 0.5rem; }
 
 @media (max-width: 768px) {
-    .block-container { padding: 1rem !important; }
+    [data-testid="stSidebar"] {
+        position: fixed !important;
+        z-index: 999999 !important;
+        transform: translateX(-100%) !important;
+    }
+    [data-testid="collapsedControl"] { display: block !important; }
+    [data-testid="stSidebarCollapseButton"] { display: block !important; }
+    .block-container { max-width: 100% !important; padding: 0.5rem !important; }
 }
 [data-testid="collapsedControl"] { display: none !important; }
 [data-testid="stSidebarCollapseButton"] { display: none !important; }
