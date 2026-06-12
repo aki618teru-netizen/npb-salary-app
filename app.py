@@ -17,7 +17,7 @@ st.set_page_config(
     page_title="NPB選手年俸予測システム",
     page_icon="⚾",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 st.markdown("""
@@ -191,7 +191,8 @@ section[data-testid="stMain"] {
     [data-testid="stSidebarCollapseButton"] { display: block !important; }
     .block-container { max-width: 100% !important; padding: 0.5rem !important; }
 }
-[data-testid="collapsedControl"] svg { color: white !important; fill: white !important; }
+[data-testid="collapsedControl"] svg { color: white !important; fill: white !important; stroke: white !important; }
+[data-testid="collapsedControl"] svg path { fill: white !important; stroke: white !important; }
 </style>
 """, unsafe_allow_html=True)
 
