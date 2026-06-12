@@ -191,6 +191,7 @@ section[data-testid="stMain"] {
     [data-testid="stSidebarCollapseButton"] { display: block !important; }
     .block-container { max-width: 100% !important; padding: 0.5rem !important; }
 }
+[data-testid="collapsedControl"] svg { color: white !important; fill: white !important; }
 </style>
 """, unsafe_allow_html=True)
 
