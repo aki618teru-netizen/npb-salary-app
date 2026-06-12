@@ -700,48 +700,6 @@ if data_loaded:
          "🏆 精度ランキング", "💰 年俸別予測", "📜 予測履歴"],
         key="main_menu", label_visibility="collapsed"
     )
-    st.sidebar.markdown("""
-    <script>
-    (function() {
-        var doc = window.parent.document;
-        function setup() {
-            var sidebar = doc.querySelector('[data-testid="stSidebar"]');
-            var main = doc.querySelector('section[data-testid="stMain"]');
-            var btn = doc.querySelector('[data-testid="collapsedControl"]');
-            if (!sidebar || !btn || !main) { setTimeout(setup, 300); return; }
-
-            var open = false;
-
-            function openSidebar() {
-                open = true;
-                sidebar.style.transform = 'translateX(0)';
-                main.style.marginLeft = '260px';
-                main.style.width = 'calc(100% - 260px)';
-            }
-            function closeSidebar() {
-                open = false;
-                sidebar.style.transform = 'translateX(-260px)';
-                main.style.marginLeft = '0px';
-                main.style.width = '100%';
-            }
-
-            sidebar.style.transform = 'translateX(-260px)';
-            main.style.transition = 'margin-left 0.3s ease, width 0.3s ease';
-
-            btn.addEventListener('click', function() {
-                open ? closeSidebar() : openSidebar();
-            });
-
-            sidebar.querySelectorAll('input[type="radio"]').forEach(function(r) {
-                r.addEventListener('change', function() {
-                    setTimeout(closeSidebar, 300);
-                });
-            });
-        }
-        setTimeout(setup, 500);
-    })();
-    </script>
-    """, unsafe_allow_html=True)
 
     # ----------------------------------------------------------
     # ホーム
