@@ -143,18 +143,9 @@ hr { border-color: var(--navy2) !important; }
 
 /* サイドバー */
 [data-testid="stSidebar"] {
-    position: fixed !important;
-    top: 0; left: 0;
-    width: 260px !important;
-    height: 100vh !important;
     background: linear-gradient(180deg, #0d1b2a 0%, #1a2f45 100%) !important;
     border-right: 1px solid rgba(240,165,0,0.15) !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    z-index: 1000000 !important;
-    overflow: hidden !important;
     box-shadow: 4px 0 24px rgba(0,0,0,0.4) !important;
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
 }
 [data-testid="stSidebarUserContent"] { padding-top: 1rem !important; }
 [data-testid="stSidebarContent"] {
