@@ -222,6 +222,8 @@ st.markdown("""
 <style>
 [data-testid="stDataFrame"] { animation: none !important; transition: none !important; }
 .stDataFrame { animation: none !important; transition: none !important; }
+[data-testid="stMetricValue"] { font-size: 1.2rem !important; }
+[data-testid="stMetricLabel"] { font-size: 0.7rem !important; }
 </style>
 """, unsafe_allow_html=True)
 
